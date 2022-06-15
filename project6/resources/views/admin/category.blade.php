@@ -98,6 +98,7 @@
                                             <input class="btn btn-success" type="submit" value="Edit" name="edit">
                                             </form> -->
                                           
+                                            <a href=" {{ url('/category/'.$value->id.'/edit') }}"  class="btn btn-success btn-flat ">Update</a>
 
                                                 <form method="post" action="{{ route('category.destroy', $value->id) }}"
                                                     class="d-inline">
@@ -107,7 +108,6 @@
                                                         data-toggle="tooltip" title='Delete'>Delete</button>
                                                 </form>
                                                
-                                                {{-- <a href=" {{ url('/category/'.$value->id.'/edit') }}"  class="btn btn-success btn-flat ">Update</a> --}}
                                             </td>
                                         </tr>
                                     @endforeach

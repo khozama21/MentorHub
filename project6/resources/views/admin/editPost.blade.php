@@ -78,7 +78,7 @@
 
                     <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>description:</strong>
+                        <strong>Description:</strong>
                         <input type="text" value="{{$post->body}}" name="body" class="form-control " style="height:50px" placeholder="description">
                     </div>
                 </div>
@@ -86,11 +86,12 @@
 
                       <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>description:</strong>
-                        <select name='active'>
-                        <option value='{{$post->active}}'></option>
-                         <option value='active'>active</option>
-                          <option value='non-active'>non-active</option>
+                        <strong>Activity Status:</strong>
+                        <select class="form-control " name='active' >
+                        {{-- <option value='{{$post->active}}'></option> --}}
+                        <option value='non-active'>Non-active</option>
+
+                         <option value='active'>Active</option>
                         <select>
                     </div>
                 </div>

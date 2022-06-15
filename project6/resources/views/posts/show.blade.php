@@ -158,7 +158,7 @@
     </style>
 
 
-<hr>
+    <hr>
     <div class="row">
         <div class="container my-1 py-1">
             <div class="row d-flex justify-content-center">
@@ -177,9 +177,9 @@
                                     </p>
                                 </div>
                             </div>
-                            <p class="mt-5 mb-5 pb-3 text-center ">
+                            <h3 class="mt-5 mb-5 pb-3   ">
                                 {{ $post->body }}
-                            </p>
+                            </h3>
                             <div class="col-lg-12">
 
                                 <div class="comments-area">
@@ -216,33 +216,41 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="comment-form" style='background:#F0F0F0'>
-                                    <h4>Leave a Comment/Reply</h4>
+                                @if (Auth::user())
+                                    <div class="comment-form" style='background:#F0F0F0'>
+                                        <h4>Leave a Comment/Reply</h4>
 
-                                    <div class="row">
+                                        <div class="row">
 
-                                    </div><br />
-                                    <div class="row">
-                                        <div class="offset-lg-2 col-lg-8 col-md-8 col-sm-10">
-                                            <form method="post" action="{{ route('comments.store') }}">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <textarea class="form-control" name="body"></textarea>
-                                                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="submit" class="btn" style='background:#FFB452'
-                                                        value="Add Comment" />
-                                                </div>
-                                            </form>
-                                        </div>
+                                        </div><br />
+                                        <div class="row">
+                                            <div class="offset-lg-2 col-lg-8 col-md-8 col-sm-10">
+                                                <form method="post" action="{{ route('comments.store') }}">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="body"></textarea>
+                                                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" class="btn"
+                                                            style='background:#FFB452' value="Add Comment" />
+                                                    </div>
+                                                </form>
+                                @endif
+                                @if (Auth::guest())
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        You must be mentor to comment</a>.
+
                                     </div>
-                                </div>
-
+                                @endif
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
-        @endsection
+
+        </div>
+    </div>
+    </div>
+@endsection

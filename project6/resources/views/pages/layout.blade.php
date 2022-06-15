@@ -74,7 +74,7 @@
                             <a  style="margin-top: 30px" href="{{ route('profile.index') }}" class="nav-item nav-link "><h5>Mentors</h5></a>
                              <a  style="margin-top: 30px" href="{{ route('posts.index') }}" class="nav-item nav-link "><h5>Ask</h5></a>
                             <a  style="margin-top: 30px" href="/#about" class="nav-item nav-link "><h5>About</h5></a>
-                            <a  style="margin-top: 30px" href="#contact" class="nav-item nav-link "><h5>Contact</h5></a>
+                            <a  style="margin-top: 30px" href="/contact" class="nav-item nav-link "><h5>Contact</h5></a>
 
                             <!-- Right Side Of Navbar -->
                             <ul style="margin-top: 17px;"  class="navbar-nav ms-auto">

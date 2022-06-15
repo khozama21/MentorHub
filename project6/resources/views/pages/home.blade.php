@@ -123,11 +123,11 @@
                         <div class="rounded overflow-hidden mb-2">
                             <img class="img-fluid"
                                 src="https://online.ejabi.org.jo/wp-content/uploads/2021/08/online-course-blog-header-1.jpg"
-                                alt="">
+                                alt="" >
                             <div class="bg-secondary p-4">
 
-                                <p class="h5" href="">{{ $course->name }} Course</p>
-                                <p class="h5" href="">{{ $course->description }}</p><br>
+                                <h5   href="">{{ $course->name }} Course</h5>
+                                <p   href="">{{ Str::limit($course->description ,30)}}</p><br>
                                 <a class="h5" href="{{ $course->link }}" target="_blank"
                                     style="text-decoration: underline">Go To The Course</a>
                                 <div class="border-top mt-4 pt-4">

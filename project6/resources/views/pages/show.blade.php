@@ -13,18 +13,18 @@
 
             @foreach ($users as $user)
             
-                <div class="col-md-6 col-lg-3 text-center team mb-4 ">
-                    <div class="team-item rounded overflow-hidden mb-2 ">
+                <div class="col-md-6 col-lg-3 text-center team mb-4">
+                    <div class="team-item rounded overflow-hidden mb-2">
                         <div class="team-img position-relative">
-                            <img style="height: 240px;width:250px" class="img-fluid" src="{{asset('uploads/images/'.$user->img)}}" alt="">
+                            <img style="height: 300px; width:100%" class="img-fluid" src="{{asset('uploads/images/'.$user->img)}}" alt="">
                             <div class="team-social">
                                 <a class="btn btn-outline-light  mx-1" href="/mentorSingle/{{ $user->id }}">View </a>
                                 
                             </div>
+
                             <div class="bg-secondary p-4">
                                 <h3>{{$user->name}}</h3>
                                 <h6>{{$user->email}}</h6>
-                                <p class="m-0">{{$user->mentor_about}}</p>
                             </div>
                         </div>
                        

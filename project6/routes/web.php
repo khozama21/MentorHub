@@ -14,11 +14,11 @@ use App\Http\Controllers\singleMentor;
 use App\Http\Controllers\categoryShowController;
 use App\Http\Controllers\PostControlle;
 use App\Http\Controllers\sendEmail;
-
+use App\Http\Controllers\postAdminController; 
 use App\Http\Controllers\CommentController;/*
 =======
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\postAdminController;/*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -28,6 +28,7 @@ use App\Http\Controllers\postAdminController;/*
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\mentor_application;
 
 // Route::get('/layout', function () {
 //     return view('pages.layout');
@@ -49,6 +50,8 @@ Route::get('/',[categoryShowController::class,'index']);
 Route::resource('/posts', PostControlle::class);
 Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
 Route::resource('profile',MentorController::class);
+
+// Route::get('/profile/app/{id}',[MentorController::class,'apppp']);
 
 Route::resource('image',changeimage::class);
  
@@ -76,15 +79,15 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 Route::get('/admin_profile', [AdminController::class,'show']);
 
+
 Route::put('/edit_admin/{admin}', [AdminController::class,'update']);
-
-
 
 Route::get('/dashboard', [AdminController::class,'index']);
 
 Route::resource('/mentors', MentorRequestController::class);
 
 Route::resource('/category', CategoryController::class);
+
 Route::resource('/post', postAdminController::class);
 
 // Route::resource('/admin_profile', [AdminController::class,'show']);
@@ -135,12 +138,22 @@ Route::get('/create_course', function () {
 });
 
 
+Route::get('/contact', function () {
+    return view('pages.contact');
+});
 
 
 
-Route::post('application',[ApplicationController::class,'store']);
+
+
+
+Route::post('/application',[ApplicationController::class,'store']);
 
 
 Route::get('/app', [ApplicationController::class,'index']);
 Route::delete('/app/{id}', [ApplicationController::class,'destroy']);
 
+Route::delete('/mapp/{id}', [mentor_application::class,'destroy']);
+
+
+ 

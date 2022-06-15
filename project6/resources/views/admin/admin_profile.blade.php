@@ -88,13 +88,20 @@
                                     <input type="email" name="email" value="{{$admin->admin_email}}" class="form-control p-0 border-0" name="example-email" id="example-email">
                                 </div>
                             </div>
-                            <div class="form-group mb-4">
+
+
+
+
+                            {{-- <div class="form-group mb-4">
                                 <label class="col-md-12 p-0"><b>Password</b></label>
                                 <div class="col-md-12 border-bottom p-0">
                                     <input type="password" name="pass" value="{{$admin->admin_password}}" class="form-control p-0 border-0">
                                 </div>
-                            </div>
+                            </div> --}}
 
+
+
+                            
                             <div class="form-group mb-4">
                                 <div class="col-sm-12">
 

@@ -70,9 +70,10 @@
                                 <tr>
                                     <th class="border-top-0 " style="color: #fff;">Name </th>
                                     <th class="border-top-0" style="color: #fff;"> Email </th>
-                                    <th class="border-top-0" style="color: #fff;"> Age</th>
+                                    <th class="border-top-0" style="color: #fff;"> Date of Birth </th>
                                     <th class="border-top-0" style="color: #fff;">Education</th>
-                                    <th class="border-top-0 w-25" style="color: #fff;">Purpose</th>
+                                    <th class="border-top-0" style="color: #fff;">Purpose</th>
+                                    <th class="border-top-0" style="color: #fff;">Mentor ID</th>
                                     <th class="border-top-0" style="color: #fff;">Actions</th>
                                 </tr>
                             </thead>
@@ -80,23 +81,25 @@
                                 @foreach ($data as $value)
                                 <tr>
                                     <td>{{ $value->name }}</td>
-                                    <td>{{ $value->email }}</td>
+                                    
+                                    <td><a href="mailto:{{ $value->email }}">{{ $value->email }}</a></td>
                                     <td>{{ $value->age }}</td>
                                     <td>{{ $value->education }}</td>
                                     <td class="text-wrap">{{ $value->purpose }}</td>
+                                    <td>{{ $value->mentor_id }}</td>
 
 
                                     <td>
-                                        <form method="post" action="{{ route('send-mail.store')}}">
+                                        <form method="post" action="{{ route('send-mail.store')}}" class="d-inline">
                                             @csrf
                                             @method('POST')
 
+                                            <input type="hidden" name="id" value="{{ $value->id }}">
                                             <input type="hidden" name="userName" value="{{ $value->name }}">
                                             <input type="hidden" name="userEmail" value="{{ $value->email }}">
                                             <input type="hidden" name="userAge" value="{{ $value->age }}">
                                             <input type="hidden" name="userEducation" value="{{ $value->education }}">
-                                            <input type="submit" value="Accept" name="sender"
-                                                class="btn btn-success btn-flat ">
+                                            <input type="submit" value="Accept" name="sender" class="btn btn-success btn-flat ">
 
 
                                         </form>
@@ -105,8 +108,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button type="submit" class="btn btn-danger btn-flat show_confirm"
-                                                data-toggle="tooltip" title='Delete'>Ignore</button>
+                                            <button type="submit" class="btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Ignore</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -114,11 +116,11 @@
                             </tbody>
                         </table>
                         @if(Session('message'))
-                            <div  style="background-color:aquamarine;width:290px">
-                               <h3>{{Session('message')}}</h3> 
-                            </div>
-                            
-                            @endif
+                        <div style="background-color:aquamarine;width:290px">
+                            <h3>{{Session('message')}}</h3>
+                        </div>
+
+                        @endif
                     </div>
                 </div>
             </div>
@@ -127,29 +129,29 @@
     </div>
 </div>
 
-    
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-    $('.show_confirm').click(function (event) {
+    $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
         var name = $(this).data("name");
         event.preventDefault();
         swal({
-            title: `Are you sure you want to ignore this application?`,
-            // text: "If you delete this",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
+                title: `Are you sure you want to ignore this application?`,
+                // text: "If you delete this",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
             .then((willDelete) => {
                 if (willDelete) {
                     form.submit();
                 }
             });
-store
+        store
     });
 </script>
 
-    
+
 @endsection

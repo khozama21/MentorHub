@@ -34,12 +34,24 @@
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <div class="d-md-flex">
                         <ol class="breadcrumb ms-auto">
-                            <li><a href="/dashboard" class="fw-normal">Dashboard</a></li>
+                            <li><a href="/dashboard" class="fw-normal">Dashboard &nbsp;</a></li>
                         </ol>
 
-                        <a href="/addcategory"
+                        {{-- <a href="/addcategory"
                             class="btn btn-primary d-none d-md-block pull-right ms-3 hidden-xs hidden-sm  ">Add
-                            Question</a>
+                            Question</a> --}}
+
+                          
+                                <div class="form-outline">
+                                    <form method='get' action="{{ route('post.index') }}">
+                                        @csrf
+                                        <input type="search" name='title' id="form1" class="form-control" />
+                                </div>
+                                <button type="submit" class="btn btn-primary " style='height:36px'>search
+                                </button>
+                                </form>
+                    
+                         
                     </div>
                 </div>
             </div>
@@ -49,7 +61,7 @@
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-
+      
         @if ($message = Session::get('success'))
             <div class="alert alert-success" role="alert">
                 {{ $message }}
@@ -78,7 +90,7 @@
                                     <tr>
                                         <th class="border-top-0 " style="color: #fff;">Question</th>
                                         <th class="border-top-0 " style="color: #fff;">description</th>
-                                         <th class="border-top-0" style="color: #fff;">active</th>
+                                        <th class="border-top-0" style="color: #fff;">Status</th>
                                         <th class="border-top-0" style="color: #fff;">Actions</th>
                                     </tr>
                                 </thead>
@@ -88,15 +100,16 @@
                                             <td>{{ $value->title }}</td>
                                             <td>{{ $value->body }}</td>
                                             <td>{{ $value->active }}</td>
-                                          
+
                                             <td>
                                                 <!--  <form method="get" action="/editPost/{{ $value->id }}/edit" class="d-inline">
-                                            @csrf
-                                            @method('PUT') 
-                                            
-                                            <input class="btn btn-success btn-flat" type="submit" value="Edit" name="edit">
-                                            </form> -->
-                                             
+                                                @csrf
+                                                @method('PUT')
+                                                
+                                                <input class="btn btn-success btn-flat" type="submit" value="Edit" name="edit">
+                                                </form> -->
+                                                <a href="{{ route('post.edit', $value->id) }}"
+                                                    class="btn btn-success btn-flat ">Activate</a>
 
                                                 <form method="post" action="{{ route('post.destroy', $value->id) }}"
                                                     class="d-inline">
@@ -105,8 +118,7 @@
                                                     <button type="submit" class="btn btn-danger btn-flat show_confirm"
                                                         data-toggle="tooltip" title='Delete'>Delete</button>
                                                 </form>
-                                                <a href="{{ route('post.edit', $value->id) }}"
-                                                    class="btn btn-primary btn-flat ">Update</a>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -127,8 +139,8 @@
             var name = $(this).data("name");
             event.preventDefault();
             swal({
-                    title: `Are you sure you want to delete this category?`,
-                    text: "If you delete this, it will delete all mentors under this category.",
+                    title: `Are you sure you want to delete this Post?`,
+                    // text: "If you delete this, it will delete all mentors under this category.",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,

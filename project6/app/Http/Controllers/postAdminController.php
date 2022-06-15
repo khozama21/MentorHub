@@ -7,14 +7,20 @@ use App\Models\Post;
 
 class postAdminController extends Controller
 {
-        public function index()
+    public function index(Request $request)
     {
-        
-        $posts = Post::all();
-    
-        return view('admin.post', compact('posts'));
+        $name = $request->title;
+        if (isset($name)) {
+
+            $posts = Post::Where('title', $name)->get();
+            return view('admin.post', compact('posts'));
+        } else {
+            $posts = Post::all();
+
+            return view('admin.post', compact('posts'));
+        }
     }
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +30,7 @@ class postAdminController extends Controller
     // {
     //     return view('admin.create');
     // }
-    
+
     // /**
     //  * Store a newly created resource in storage.
     //  *
@@ -37,14 +43,14 @@ class postAdminController extends Controller
     //         'title'=>'required',
     //         'body'=>'required',
     //     ]);
-       
+
     //     $input = $request->all();
-       
+
     //     Post::create($input);
-    
+
     //     return redirect()->route('postAdmin.index');
     // }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -52,13 +58,13 @@ class postAdminController extends Controller
      */
     public function show($id)
     {
-    	$post = Post::find($id);
+        $post = Post::find($id);
         return view('admin.post', compact('post'));
     }
-     public function edit($id)
+    public function edit($id)
     {
         $post = Post::find($id);
-        return view('admin.editPost') -> with('post', $post);
+        return view('admin.editPost')->with('post', $post);
     }
 
     /**
@@ -70,11 +76,11 @@ class postAdminController extends Controller
      */
     public function update(Request $request)
     {
-        $id=$request->id;
+        $id = $request->id;
         $post = Post::find($id);
-        $post->title=$request->title;
-        $post->body=$request->body;
-        $post->active=$request->active;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->active = $request->active;
         $post->save();
         return redirect('post')->with('flash_message', 'post Updated!');
     }
@@ -91,5 +97,4 @@ class postAdminController extends Controller
         $m->delete();
         return redirect()->back()->with('status', 'post Deleted Successfully');
     }
-
 }

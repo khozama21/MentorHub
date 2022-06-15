@@ -36,7 +36,20 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     { 
-        Application::create($request->all());
+
+        $a=new Application();
+
+        $a->name = $request->post('name');
+        $a->email = $request->post('email');
+        $a->age = $request->post('age');
+        $a->education = $request->post('education');
+        $a->purpose = $request->post('purpose');
+        $a->mentor_id = $request->post('id');
+
+        $a->save();
+
+
+        // Application::create($request->all());
         return redirect()->back()->with('success','Application Submitted Successfully!');
     }
 

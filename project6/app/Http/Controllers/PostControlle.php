@@ -36,6 +36,7 @@ class PostControlle extends Controller
     	$request->validate([
             'title'=>'required',
             'body'=>'required',
+            'active' =>'non-active'
         ]);
        
         $input = $request->all();

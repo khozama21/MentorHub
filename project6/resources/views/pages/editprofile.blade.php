@@ -96,16 +96,8 @@
                 </div>
               </div>
               <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label class="mb-0">Password</label>
-                </div>
-                <div class="col-sm-9">
-                  <input class="form-control" type="password" name="password"  id="email"  value="{{Auth::user()->password}}" class="text-muted mb-0"> 
-                  
-                </div>
-              </div>
-              <hr>
+              
+             
               <div class="row">
                 <div class="col-sm-3">
                   <label class="mb-0">Field</label>

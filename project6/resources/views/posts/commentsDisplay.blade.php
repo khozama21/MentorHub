@@ -11,6 +11,7 @@
 </div><p>{{ $comment->body }}</p>
         <a href="" id="reply"></a>
         <div>
+        @if (Auth::user()) 
         <form method="post" action="{{ route('comments.store') }}">
             @csrf
             <div class="form-group">
@@ -22,6 +23,7 @@
                 <input type="submit" class="btn btn-warning" value="Reply" />
             </div>
         </form>
+         @endif  
        @include('posts.commentsDisplay', ['comments' => $comment->replies])
 </div>
     </div>

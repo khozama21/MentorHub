@@ -63,8 +63,9 @@
 
                 <div class="bg-secondary rounded p-5">
                     <h3 class="text-uppercase mb-4" style="letter-spacing: 5px;">Send An Application</h3>
-                    <form method="POST" action="application">
+                    <form method="POST" action="/application">
                         @csrf
+                        
                         <div class="form-group">
                             <label for="name">Name*</label>
                             <input type="text" name="name" class="form-control border-0" required>
@@ -74,8 +75,8 @@
                             <input type="email" name="email" class="form-control border-0" required>
                         </div>
                         <div class="form-group">
-                            <label for="name">Age*</label>
-                            <input type="number" min="5" max='50' name="age" class="form-control border-0" required>
+                            <label for="name">Date of Birth*</label>
+                            <input type="date" min="5" max='50' name="age" class="form-control border-0" required>
                         </div>
 
                         <div class="form-group">
@@ -83,11 +84,13 @@
                             <input type="text" name="education" class="form-control border-0" required>
                         </div>
 
-
-
                         <div class="form-group">
                             <label for="message">What is the purpose of Contacting the Mentor*</label>
                             <textarea maxlength="200" name="purpose" cols="30" rows="5" class="form-control border-0" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" name="id" class="form-control border-0" value="{{ $mentor->id }}">
                         </div>
 
                         <div class="form-group mb-0">
